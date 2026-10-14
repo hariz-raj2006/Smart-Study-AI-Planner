@@ -1,0 +1,4 @@
+.chart-box--tall { height: 19rem; }
+.progress-list { display: grid; gap: var(--space-4); }
+.change-up { color: var(--success); font-weight: 700; }
+.change-down { color: var(--danger); font-weight: 700; }

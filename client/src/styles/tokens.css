@@ -1,0 +1,144 @@
+/* Design tokens. Light is the default. Dark applies when data-theme="dark",
+   or when the student chose "system" (no data-theme attribute) and the device prefers dark. */
+
+:root {
+  color-scheme: light;
+
+  --bg: #f5f6fb;
+  --surface: #ffffff;
+  --surface-2: #f0f2f9;
+  --surface-3: #e7eaf5;
+  --border: #e1e4f0;
+  --border-strong: #c9cee3;
+
+  --text: #1a1e3c;
+  --text-muted: #565c7d;
+  --text-faint: #767c9a;
+
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-contrast: #ffffff;
+  --primary-soft: #eceeff;
+  --primary-text: #4338ca;
+  --violet: #7c3aed;
+  --blue: #2563eb;
+  --gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  --gradient-soft: linear-gradient(135deg, #eceeff 0%, #f3ecff 100%);
+
+  --success: #047857;
+  --success-soft: #dcfce9;
+  --warning: #b45309;
+  --warning-soft: #fef3c7;
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+  --info: #0369a1;
+  --info-soft: #e0f2fe;
+
+  --focus-ring: 0 0 0 3px rgba(79, 70, 229, 0.35);
+  --shadow-sm: 0 1px 2px rgba(26, 30, 60, 0.06), 0 1px 3px rgba(26, 30, 60, 0.04);
+  --shadow-md: 0 6px 18px rgba(26, 30, 60, 0.08);
+  --shadow-lg: 0 18px 48px rgba(26, 30, 60, 0.18);
+  --scrim: rgba(15, 18, 36, 0.5);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+
+  --sidebar-width: 17rem;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0e1124;
+  --surface: #171a33;
+  --surface-2: #1e2243;
+  --surface-3: #282d57;
+  --border: #2a2f58;
+  --border-strong: #3a406e;
+
+  --text: #eceefd;
+  --text-muted: #adb3d6;
+  --text-faint: #8a90b8;
+
+  --primary: #6d66f2;
+  --primary-hover: #8179f5;
+  --primary-contrast: #ffffff;
+  --primary-soft: #262a5c;
+  --primary-text: #b4b0ff;
+  --violet: #a78bfa;
+  --blue: #60a5fa;
+  --gradient: linear-gradient(135deg, #5b54e6 0%, #8b5cf6 100%);
+  --gradient-soft: linear-gradient(135deg, #20254f 0%, #2b2257 100%);
+
+  --success: #6ee7b7;
+  --success-soft: #0f3a2c;
+  --warning: #fcd34d;
+  --warning-soft: #433308;
+  --danger: #fca5a5;
+  --danger-soft: #4a1717;
+  --info: #7dd3fc;
+  --info-soft: #0c3550;
+
+  --focus-ring: 0 0 0 3px rgba(167, 139, 250, 0.5);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.6);
+  --scrim: rgba(3, 4, 12, 0.65);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --bg: #0e1124;
+    --surface: #171a33;
+    --surface-2: #1e2243;
+    --surface-3: #282d57;
+    --border: #2a2f58;
+    --border-strong: #3a406e;
+
+    --text: #eceefd;
+    --text-muted: #adb3d6;
+    --text-faint: #8a90b8;
+
+    --primary: #6d66f2;
+    --primary-hover: #8179f5;
+    --primary-contrast: #ffffff;
+    --primary-soft: #262a5c;
+    --primary-text: #b4b0ff;
+    --violet: #a78bfa;
+    --blue: #60a5fa;
+    --gradient: linear-gradient(135deg, #5b54e6 0%, #8b5cf6 100%);
+    --gradient-soft: linear-gradient(135deg, #20254f 0%, #2b2257 100%);
+
+    --success: #6ee7b7;
+    --success-soft: #0f3a2c;
+    --warning: #fcd34d;
+    --warning-soft: #433308;
+    --danger: #fca5a5;
+    --danger-soft: #4a1717;
+    --info: #7dd3fc;
+    --info-soft: #0c3550;
+
+    --focus-ring: 0 0 0 3px rgba(167, 139, 250, 0.5);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.6);
+    --scrim: rgba(3, 4, 12, 0.65);
+  }
+}

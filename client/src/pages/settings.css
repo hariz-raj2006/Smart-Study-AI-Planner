@@ -1,0 +1,6 @@
+.settings-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+@media (max-width: 900px) { .settings-grid { grid-template-columns: minmax(0, 1fr); } }
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem var(--space-4); margin: 0; font-size: 0.92rem; }
+.kv dt { color: var(--text-muted); font-weight: 600; }
+.kv dd { margin: 0; overflow-wrap: anywhere; }
+.code-inline { font-family: var(--font-mono); font-size: 0.85em; background: var(--surface-3); padding: 0.1rem 0.4rem; border-radius: 6px; }

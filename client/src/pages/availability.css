@@ -1,0 +1,14 @@
+.day-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+.tag-list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); list-style: none; }
+.tag { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.35rem 0.25rem 0.8rem; border-radius: var(--radius-pill); background: var(--surface-3); font-size: 0.85rem; font-weight: 600; }
+.add-row { display: flex; gap: var(--space-2); align-items: flex-end; flex-wrap: wrap; }
+.add-row .field { flex: 1 1 12rem; }
+.commitment-row { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 0.8fr) auto; gap: var(--space-3); align-items: start; padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2); }
+.commitment-row + .commitment-row { margin-top: var(--space-2); }
+.commitment-row__remove { margin-top: 1.55rem; }
+@media (max-width: 860px) {
+  .commitment-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .commitment-row__remove { margin-top: 0; justify-self: start; }
+}
+.capacity { display: flex; align-items: center; gap: var(--space-3); }
+.capacity strong { font-size: 1.4rem; }

@@ -1,0 +1,19 @@
+/* One study session row, used by the Planner preview and the Timetable. */
+.sess { display: flex; align-items: center; gap: var(--space-3); padding: 0.7rem 0.85rem; border-radius: var(--radius); background: var(--surface-2); border-left: 4px solid var(--primary); }
+.sess + .sess { margin-top: var(--space-2); }
+.sess--done { opacity: 0.78; }
+.sess__open, .sess__body { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; text-align: left; }
+.sess__open { background: transparent; border: 0; padding: 0; border-radius: var(--radius-sm); color: inherit; }
+.sess__open:hover .sess__subject { text-decoration: underline; }
+.sess__time { width: 7.2rem; flex: none; font-size: 0.82rem; font-weight: 700; color: var(--text-muted); line-height: 1.35; }
+.sess__dur { display: block; font-weight: 500; color: var(--text-faint); }
+.sess__date { color: var(--text); font-weight: 700; }
+.sess__main { flex: 1 1 12rem; min-width: 0; }
+.sess__subject { display: flex; align-items: center; gap: 0.45rem; font-weight: 700; }
+.sess__topic { font-size: 0.85rem; color: var(--text-muted); overflow-wrap: anywhere; }
+.sess__why { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+.sess__badges { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+.sess__lead { flex: none; display: flex; }
+.sess__lead input[type='checkbox'] { width: 1.3rem; height: 1.3rem; accent-color: var(--primary); }
+.sess__actions { flex: none; display: flex; gap: 2px; }
+@media (max-width: 640px) { .sess__time { width: 100%; } }
