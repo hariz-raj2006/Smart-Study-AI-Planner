@@ -1,5 +1,4 @@
-```javascript
-import { store } from '../database/index.js';
+﻿import { store } from '../database/index.js';
 import { getOwnedOr404 } from '../utils/ownership.js';
 import { daysBetween, todayStr } from '../utils/dates.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
@@ -24,24 +23,15 @@ export const listAssignments = asyncHandler(async (req, res) => {
     (a) => a.userId === req.user.id
   );
 
-  assignments.sort((a, b) =>
-    a.dueDate.localeCompare(b.dueDate)
-  );
+  assignments.sort((a, b) => a.dueDate.localeCompare(b.dueDate));
 
-  res.json({
-    assignments: assignments.map(enrich),
-  });
+  res.json({ assignments: assignments.map(enrich) });
 });
 
 export const createAssignment = asyncHandler(async (req, res) => {
   const data = req.body;
 
-  await getOwnedOr404(
-    'subjects',
-    data.subjectId,
-    req.user.id,
-    'Subject'
-  );
+  await getOwnedOr404('subjects', data.subjectId, req.user.id, 'Subject');
 
   const assignment = await store.insert('assignments', {
     userId: req.user.id,
@@ -52,9 +42,7 @@ export const createAssignment = asyncHandler(async (req, res) => {
     completed: Boolean(data.completed),
   });
 
-  res.status(201).json({
-    assignment: enrich(assignment),
-  });
+  res.status(201).json({ assignment: enrich(assignment) });
 });
 
 export const updateAssignment = asyncHandler(async (req, res) => {
@@ -67,12 +55,7 @@ export const updateAssignment = asyncHandler(async (req, res) => {
 
   const data = req.body;
 
-  await getOwnedOr404(
-    'subjects',
-    data.subjectId,
-    req.user.id,
-    'Subject'
-  );
+  await getOwnedOr404('subjects', data.subjectId, req.user.id, 'Subject');
 
   const assignment = await store.update('assignments', existing.id, {
     subjectId: data.subjectId,
@@ -82,9 +65,7 @@ export const updateAssignment = asyncHandler(async (req, res) => {
     completed: data.completed ?? existing.completed,
   });
 
-  res.json({
-    assignment: enrich(assignment),
-  });
+  res.json({ assignment: enrich(assignment) });
 });
 
 export const deleteAssignment = asyncHandler(async (req, res) => {
@@ -97,8 +78,5 @@ export const deleteAssignment = asyncHandler(async (req, res) => {
 
   await store.remove('assignments', existing.id);
 
-  res.json({
-    message: 'Assignment deleted.',
-  });
+  res.json({ message: 'Assignment deleted.' });
 });
-```
