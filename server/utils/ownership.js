@@ -1,4 +1,3 @@
-```javascript
 import { store } from '../database/index.js';
 import { AppError } from './AppError.js';
 
@@ -20,4 +19,3 @@ export async function getOwnedOr404(
 
   return row;
 }
-```
