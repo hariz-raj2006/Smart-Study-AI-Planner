@@ -12,7 +12,8 @@ import {
   isActiveSession,
   rescheduleMissedSessions,
 } from '../services/schedulingService.js';
-import { generateAdaptationAdvice } from '../services/geminiService.js';
+
+import { generateAdaptationAdvice } from '../services/groqService.js';
 import { decorateSessions, isOverdue, loadStudentData } from '../services/planService.js';
 
 // ---------------------------------------------------------------------------

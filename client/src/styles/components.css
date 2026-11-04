@@ -246,11 +246,45 @@ select.input { appearance: auto; }
 .list__item:first-child { border-top: 0; padding-top: 0; }
 .list__item:last-child { padding-bottom: 0; }
 
-.avatar { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--gradient); color: #fff; font-weight: 700; font-size: 0.9rem; flex: none; }
-.logo { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
-.logo:hover { text-decoration: none; }
-.logo__mark { width: 2rem; height: 2rem; flex: none; }
-.logo__accent { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex: none;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  color: #007BA7;
+  text-decoration: none;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.logo__mark {
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+}
+
+.logo__accent {
+  color: #FF2D95;
+}
+
 
 /* ---------- Form helpers ---------- */
 .form { display: flex; flex-direction: column; gap: var(--space-4); }

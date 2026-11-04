@@ -1,11 +1,13 @@
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { todayStr } from '../utils/dates.js';
+
 import {
   askAssistant,
   generatePlanHints,
   getAiStatus,
   testConnection,
-} from '../services/geminiService.js';
+} from '../services/groqService.js';
+
 import {
   buildAssistantContext,
   currentPriorities,

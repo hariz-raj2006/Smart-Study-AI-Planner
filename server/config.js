@@ -20,6 +20,9 @@ if (sessionSecret.length < 16 || sessionSecret.startsWith('replace_with')) {
 const geminiKey = (env.GEMINI_API_KEY || '').trim();
 const geminiModel = (env.GEMINI_MODEL || '').trim();
 
+const groqKey = (env.GROQ_API_KEY || '').trim();
+const groqModel = (env.GROQ_MODEL || '').trim();
+
 export const config = {
   serverRoot,
   nodeEnv,
@@ -37,4 +40,14 @@ export const config = {
     // The placeholder text from .env.example does not count as a real key.
     configured: Boolean(geminiKey) && !geminiKey.startsWith('your_') && Boolean(geminiModel),
   },
+  groq: {
+  apiKey: groqKey,
+  model: groqModel,
+  timeoutMs: Number(env.GROQ_TIMEOUT_MS) || 45000,
+  configured:
+    Boolean(groqKey) &&
+    !groqKey.startsWith('your_') &&
+    Boolean(groqModel),
+  },
 };
+
