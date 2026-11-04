@@ -181,7 +181,6 @@ export default function TimetablePage() {
           ))}
         </div>
       </div>
-
       {loading && !data ? (
         <PageLoader label="Loading your timetable..." />
       ) : error && !data ? (
