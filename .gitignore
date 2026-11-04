@@ -1,10 +1,25 @@
+# dependencies
 node_modules/
-.env
-.env.*
-!.env.example
-dist/
-coverage/
-server/database/*.bak
 
-server/database/smartstudy.json
-server/database/smartstudy.json.bak
+# secrets
+.env
+.env.local
+.env.*.local
+
+# local database (contains student data and password hashes)
+server/database/*.json
+server/database/*.json.bak
+server/database/*.json.tmp
+server/database/*.json.corrupt-*
+
+# build output
+client/dist/
+dist/
+
+# logs and OS files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json

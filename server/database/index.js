@@ -1,8 +1,5 @@
+import { config } from '../config.js';
+import { createStore } from './jsonStore.js';
 
-import { createPostgresStore } from './postgresStore.js';
-
-/**
- * The single shared store used by the whole backend.
- * Uses Neon PostgreSQL through the pg connection pool.
- */
-export const store = createPostgresStore();
+/** The single shared store used by the whole backend. */
+export const store = createStore(config.databasePath);

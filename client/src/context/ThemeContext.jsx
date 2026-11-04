@@ -1,62 +1,82 @@
-    import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
-    const STORAGE_KEY = 'smartstudy.theme';
-    const THEMES = ['light', 'dark', 'system'];
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
-    function readStored() {
+const ThemeContext = createContext(null);
+
+export function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
     try {
-        const value = window.localStorage.getItem(STORAGE_KEY);
-        return THEMES.includes(value) ? value : 'system';
+      const raw = window.localStorage.getItem(key);
+      return raw !== null ? JSON.parse(raw) : initialValue;
     } catch {
-        return 'system';
+      return initialValue;
     }
-    }
+  });
 
-    function applyToDocument(theme) {
-    const root = document.documentElement;
-    if (theme === 'system') root.removeAttribute('data-theme');
-    else root.setAttribute('data-theme', theme);
-    }
+  const set = useCallback(
+    (next) => {
+      setValue((prev) => {
+        const resolved = typeof next === 'function' ? next(prev) : next;
 
-    /** Called once before React renders, so the right theme is on screen from the first frame. */
-    export function applyStoredTheme() {
-    applyToDocument(readStored());
-    }
-
-    const ThemeContext = createContext(null);
-
-    export function ThemeProvider({ children }) {
-    const [theme, setThemeState] = useState(readStored);
-    const [systemDark, setSystemDark] = useState(
-        () => typeof window.matchMedia === 'function' && window.matchMedia('(prefers-color-scheme: dark)').matches
-    );
-
-    useEffect(() => {
-        if (typeof window.matchMedia !== 'function') return undefined;
-        const query = window.matchMedia('(prefers-color-scheme: dark)');
-        const onChange = (e) => setSystemDark(e.matches);
-        query.addEventListener('change', onChange);
-        return () => query.removeEventListener('change', onChange);
-    }, []);
-
-    const setTheme = useCallback((next) => {
-        if (!THEMES.includes(next)) return;
-        applyToDocument(next);
         try {
-        window.localStorage.setItem(STORAGE_KEY, next);
+          window.localStorage.setItem(key, JSON.stringify(resolved));
         } catch {
-        /* ignore */
+          // Storage may be unavailable.
         }
-        setThemeState(next);
-    }, []);
 
-    const resolved = theme === 'system' ? (systemDark ? 'dark' : 'light') : theme;
-    const value = useMemo(() => ({ theme, resolved, setTheme }), [theme, resolved, setTheme]);
-    return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
-    }
+        return resolved;
+      });
+    },
+    [key]
+  );
 
-    export function useTheme() {
-    const ctx = useContext(ThemeContext);
-    if (!ctx) throw new Error('useTheme must be used inside <ThemeProvider>');
-    return ctx;
-    }
+  return [value, set];
+}
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useLocalStorage('smartstudy.theme', 'system');
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const applyTheme = () => {
+      const dark = theme === 'dark' ||
+        (theme === 'system' && systemDark.matches);
+
+      root.classList.toggle('dark', dark);
+      root.style.colorScheme = dark ? 'dark' : 'light';
+    };
+
+    applyTheme();
+
+    if (theme !== 'system') return undefined;
+
+    systemDark.addEventListener('change', applyTheme);
+    return () => systemDark.removeEventListener('change', applyTheme);
+  }, [theme]);
+
+  const value = { theme, setTheme };
+
+  return (
+    <ThemeContext.Provider value={value}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('useTheme must be used inside ThemeProvider');
+  }
+
+  return context;
+}
